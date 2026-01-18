@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface EnvelopeProps {
   isOpen: boolean;
@@ -6,10 +6,15 @@ interface EnvelopeProps {
 }
 
 export const Envelope: React.FC<EnvelopeProps> = ({ isOpen, onClick }) => {
+  const [isHovering, setIsHovering] = useState(false);
+
   return (
     <div
-      className={`relative w-80 h-56 transition-all duration-700 cursor-pointer group envelope-shadow ${isOpen ? "scale-110" : "hover:scale-105"}`}
+      className={`relative w-80 h-56 transition-all duration-700 cursor-pointer group envelope-shadow ${isOpen ? "scale-110" : isHovering ? "scale-105" : "scale-100"}`}
       onClick={!isOpen ? onClick : undefined}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      onTouchStart={() => setIsHovering(false)}
     >
       {/* Back face of envelope */}
       <div className="absolute inset-0 bg-rose-200 rounded-lg shadow-inner"></div>

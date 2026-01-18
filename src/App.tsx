@@ -222,7 +222,7 @@ function App() {
       )}
 
       {/* Audio toggle */}
-      <div className="fixed bottom-6 right-6 z-50 group">
+      <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={handleMusicToggle}
           className="w-12 h-12 bg-white/80 backdrop-blur rounded-full shadow-lg flex items-center justify-center text-rose-500 hover:bg-white transition-all"
@@ -232,11 +232,11 @@ function App() {
             <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
           </svg>
         </button>
-        <div
-          className={`absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-800 text-white text-xs rounded-lg whitespace-nowrap transition-opacity ${musicToggleClicked ? "opacity-0 group-hover:opacity-100 pointer-events-none" : "opacity-100"}`}
-        >
-          Click button below to switch music
-        </div>
+        {!musicToggleClicked && (
+          <div className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-800 text-white text-xs rounded-lg whitespace-nowrap">
+            Click button below to switch music
+          </div>
+        )}
       </div>
 
       <style
