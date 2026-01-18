@@ -36,6 +36,19 @@ function App() {
     return () => document.removeEventListener("click", startMusic);
   }, [audioPlaying]);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden && musicRef.current && audioPlaying) {
+        musicRef.current.pause();
+        setAudioPlaying(false);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [audioPlaying]);
+
   const handleMusicToggle = () => {
     if (musicRef.current) {
       musicRef.current.pause();
