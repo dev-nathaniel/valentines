@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { BalloonLayer } from "./components/BalloonLayer";
 import { AppState } from "./types";
@@ -16,7 +16,7 @@ function App() {
   const [aiMessage, setAiMessage] = useState<string>(
     "Waiting for a special moment...",
   );
-  const [noButtonStyle, setNoButtonStyle] = useState<React.CSSProperties>({});
+  // const [noButtonStyle, setNoButtonStyle] = useState<React.CSSProperties>({});
   const [audioPlaying, setAudioPlaying] = useState(false);
   const musicRef = useRef<HTMLAudioElement>(null);
   const [currentSong, setCurrentSong] = useState<"run" | "rainDance">("run");
@@ -78,17 +78,17 @@ function App() {
     setIsLoading(false);
   };
 
-  const moveNoButton = useCallback(() => {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
-    setNoButtonStyle({
-      position: "fixed",
-      left: `${x}px`,
-      top: `${y}px`,
-      transition: "all 0.2s ease",
-      zIndex: 100,
-    });
-  }, []);
+  // const moveNoButton = useCallback(() => {
+  //   const x = Math.random() * (window.innerWidth - 100);
+  //   const y = Math.random() * (window.innerHeight - 50);
+  //   setNoButtonStyle({
+  //     position: "fixed",
+  //     left: `${x}px`,
+  //     top: `${y}px`,
+  //     transition: "all 0.2s ease",
+  //     zIndex: 100,
+  //   });
+  // }, []);
 
   const handleYes = async () => {
     setState(AppState.PROPOSED);
@@ -232,7 +232,9 @@ function App() {
             <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
           </svg>
         </button>
-        <div className={`absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-800 text-white text-xs rounded-lg whitespace-nowrap transition-opacity ${musicToggleClicked ? 'opacity-0 group-hover:opacity-100 pointer-events-none' : 'opacity-100'}`}>
+        <div
+          className={`absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-800 text-white text-xs rounded-lg whitespace-nowrap transition-opacity ${musicToggleClicked ? "opacity-0 group-hover:opacity-100 pointer-events-none" : "opacity-100"}`}
+        >
           Click button below to switch music
         </div>
       </div>
